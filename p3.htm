@@ -1,0 +1,490 @@
+<!-- Published by Quadralay WebWorks HTML Lite 1.5 -->
+<html>
+<head>
+<title>EECS 483: Project 3</title>
+</head>
+
+<body><h1></h1>
+<hr>
+
+<a name="152">
+<h1>EECS 483<br>Winter 1996<br>Programming Project 3<br>Compilation: Phase 1</h1>
+</a>
+<a name="154">
+Many compilers are designed as two phases. The first phase parses and analyses the input program and converts it to an internal representation. The second phase transforms the internal representation into machine instructions for the target architecture.<p>
+</a>
+<a name="156">
+For problem 3 you will develop the first phase of a compiler for a C-like programming language. In addition to `normal' control constructs, the language supports:<p>
+</a>
+<ul>
+<a name="158">
+<li>Nested variable scopes<br>Like `C', you can declare variables within compound blocks.
+</a>
+<a name="160">
+<li>Type Definitions
+</a>
+<a name="162">
+<li>Reference Parameters to functions
+</a>
+</ul>
+<a name="164">
+To complete this project, you program must:<p>
+</a>
+<ul>
+<a name="166">
+<li>Support definitions of types and nested scoping of variables. (ala `C').<br><br>This will require a more sophisticated symbol table structure than you used in the first two projects. You will need one symbol table for types and another for variables.<br><br>
+</a>
+<a name="168">
+<li>Implement all static semantic checks.<br>These checks will be discussed at length in class. They include:<br><br>		Checking for Undefined variables<br>		Proper parameter counts for function invocation<br><br>You must report program errors on STDERR.<br><br>
+</a>
+<a name="170">
+<li>Transform the program into a linear, prefix IR.<br>This will require the disambiguation of operators (i.e. `+' to integer_addition).<br>Translation of expressions will require a parallel expression stack. This depth will never exceed 100.<br><br>Output should be written to STDOUT.<br><br>
+</a>
+<a name="172">
+<li>Perform Storage Allocation for declared variables. This includes global and local variables, and parameters to functions (in addition to their return values).<br><br>Both Integers and Reals occupy 4 bytes of storage.<br><br>
+</a>
+<a name="174">
+<li>Support rudimentary error recovery in your parser.
+</a>
+</ul>
+<a name="176">
+You must use LEX/FLEX to do your scanning.<p>
+</a>
+<a name="178">
+You must use YACC to build your parser.<p>
+</a>
+<a name="180">
+<p>
+</a>
+<a name="182">
+We require electronic submission of this project. You will be required to provide a design document describing your implementation.<p>
+</a>
+<a name="184">
+This project is due 27 March 1996. <p>
+</a>
+<a name="186">
+<p>
+</a>
+<a name="188">
+<p>
+</a>
+<a name="190">
+<h3>Addendum:</h3>
+</a>
+<ul>
+<a name="192">
+<li>The output grammar production for variable has changed.
+</a>
+<a name="194">
+<li>`Casting' tokens in the output grammar have been removed.
+</a>
+<a name="196">
+<li>There is only a single `assign' token in the output grammar.
+</a>
+<a name="198">
+<li>The input grammar production for functions has changed.
+</a>
+</ul>
+<a name="200">
+<h2>Input Grammar for P3</h2>
+</a>
+<a name="202">
+<strong>Module</strong><p>
+</a>
+<a name="204">
+<pre>	Module -&gt; unit_list		// Supports Line Comments <br>
+	unit_list -&gt; unit_list `;' unit
+		-&gt; unit
+</pre>
+</a>
+<a name="206">
+<pre>	unit -&gt; declaration		// global variables
+		-&gt; function		// functions
+		-&gt; type_decl		// types
+		-&gt; <strong>lambda
+</strong></pre>
+</a>
+<a name="208">
+<strong>Type Declarations</strong><p>
+</a>
+<a name="210">
+<pre>	type_decl -&gt; <strong>type</strong> <em>ident</em> `=' type_def
+</pre>
+</a>
+<a name="212">
+<pre>	type_def -&gt; <strong>array</strong> `[` int_const ``..'' int_const `]' <strong>of</strong> type_id
+		-&gt; <strong>record</strong> field_list <strong>end
+</strong></pre>
+</a>
+<a name="214">
+<pre>	field_list -&gt; field_list `;' field
+		-&gt; field
+</pre>
+</a>
+<a name="216">
+<pre>	field -&gt; type_id ident_list
+</pre>
+</a>
+<a name="218">
+<pre>	type_id -&gt; <em>ident</em> | base_type		 // `ident' is a defined type
+</pre>
+</a>
+<a name="220">
+<pre>	base_type -&gt; <strong>int</strong> | <strong>real
+</strong></pre>
+</a>
+<a name="222">
+<strong>Variable Declarations</strong><p>
+</a>
+<a name="224">
+<pre>	declaration_list -&gt; declaration `;' declaration_list
+		-&gt; declaration
+</pre>
+</a>
+<a name="226">
+<pre>	declaration -&gt; type_id ident_list
+</pre>
+</a>
+<a name="228">
+<pre>	ident_list -&gt; ident_list `,' <em>ident
+</em>		-&gt; <em>ident
+</em></pre>
+</a>
+<a name="230">
+<strong>Function Declarations</strong><p>
+</a>
+<a name="232">
+<pre>	function -&gt; <strong>function</strong> return_type <em>ident</em> `(` parameter_list `)' compound_stmt
+</pre>
+</a>
+<a name="234">
+<pre>	function -&gt; <strong>function</strong> return_type <em>ident</em> `(` `)' compound_stmt
+</pre>
+</a>
+<a name="236">
+<pre>	return_type -&gt; type_id | <strong>void</strong>		// Function Returns nothing
+</pre>
+</a>
+<a name="238">
+<pre>	parameter_list -&gt; parameter_list `,' parameter
+		-&gt; parameter
+</pre>
+</a>
+<a name="392">
+<pre>	parameter -&gt; mode type_id ident
+</pre>
+</a>
+<a name="393">
+<pre>	mode -&gt; <strong>var</strong> | <strong>lambda
+</strong></pre>
+</a>
+<a name="394">
+<strong>Statements</strong><p>
+</a>
+<a name="246">
+<pre>	stmt_list -&gt; stmt_list `;' statement
+		-&gt; statement
+</pre>
+</a>
+<a name="248">
+<pre>	statement -&gt; assign_stmt
+		-&gt; while_stmt
+		-&gt; if_stmt
+		-&gt; function_call		// Must return VOID
+		-&gt; compound_stmt
+		-&gt; return_stmt
+		-&gt; <strong>lambda</strong>		// NULL Statement
+</pre>
+</a>
+<a name="250">
+<pre>	assign_stmt -&gt; variable ``:='' expr
+</pre>
+</a>
+<a name="252">
+<pre>	while_stmt -&gt; <strong>while</strong> `(` expr `)' statement
+</pre>
+</a>
+<a name="254">
+<pre>	if_stmt -&gt; <strong>if</strong> `(` expr `)' <strong>then</strong> statement
+		-&gt; <strong>if </strong>`(` expr `)' <strong>then</strong> statement <strong>else</strong> statement
+</pre>
+</a>
+<a name="256">
+<pre>	function_call -&gt; <em>ident</em> `(` param_list `)'
+</pre>
+</a>
+<a name="258">
+<pre>	compound_stmt -&gt; `{` declaration_list `;' stmt_list `}'
+		-&gt; `{` stmt_list `}'
+</pre>
+</a>
+<a name="260">
+<pre>	return_stmt -&gt; <strong>return</strong>`(' expr `)' | <strong>return
+</strong></pre>
+</a>
+<a name="262">
+<strong>Expressions</strong><p>
+</a>
+<a name="264">
+<pre>	variable -&gt; ident
+		-&gt; array_ident `[` expr `]'
+		-&gt; dot_list
+</pre>
+</a>
+<a name="266">
+<pre>	array_ident -&gt; ident			// where `ident' is a defined array
+</pre>
+</a>
+<a name="268">
+<pre>	dot_list -&gt; dot_list `.' field_ident
+		-&gt; field_ident
+</pre>
+</a>
+<a name="270">
+<pre>	field_ident -&gt; ident			// where `ident' is a field<br>
+					// of a defined record.
+</pre>
+</a>
+<a name="272">
+<pre>	expr -&gt; expr bin_op expr
+		-&gt; unary_op expr
+		-&gt; `(` expr `)'
+		-&gt; variable
+		-&gt; function_call
+		-&gt; int_const
+		-&gt; real_const
+</pre>
+</a>
+<a name="274">
+<pre>	bin_op -&gt; `+' | `-' | `*' | `/' | `%'
+		-&gt; `&lt;` | `&gt;' | `&lt;=' | `&gt;=' | `&lt;&gt;'
+		-&gt; `&amp;&amp;' | `||'	// LOGICAL operators
+</pre>
+</a>
+<a name="276">
+<pre>	unary_op -&gt; `-' | `!'
+</pre>
+</a>
+<a name="278">
+Standard Mathematical rules of precedence and associativity apply (`%' has the same associativity as `+'). Binary operators are LEFT associative.<p>
+</a>
+<a name="280">
+<h2>Output Grammar for P3</h2>
+</a>
+<a name="282">
+<strong>Module</strong><p>
+</a>
+<a name="284">
+<pre>	Module -&gt; function_list
+</pre>
+</a>
+<a name="286">
+<pre>	function_list -&gt; function_list function
+		-&gt; function
+</pre>
+</a>
+<a name="288">
+<pre>	function -&gt; ident compound_stmt
+</pre>
+</a>
+<a name="290">
+<strong>Statements</strong><p>
+</a>
+<a name="292">
+<pre>	stmt_list -&gt; stmt_list statement
+		-&gt; statement
+</pre>
+</a>
+<a name="294">
+<pre>	statement -&gt; assign_stmt
+		-&gt; while_stmt
+		-&gt; if_stmt
+		-&gt; function_call
+		-&gt; compound_stmt
+		-&gt; return_stmt
+</pre>
+</a>
+<a name="296">
+<pre>	assign_stmt -&gt; <strong>assign</strong> variable expr
+		-&gt; <strong>assign</strong> const_int variable variable
+</pre>
+</a>
+<a name="298">
+<pre>	while_stmt -&gt; <strong>while</strong> `(` expr `)' statement
+</pre>
+</a>
+<a name="300">
+<pre>	if_stmt -&gt; <strong>if</strong> `(` expr `)' <strong>then</strong> statement
+		-&gt; <strong>if</strong> `(` expr `)' <strong>then</strong> statement <strong>else</strong> statement
+</pre>
+</a>
+<a name="302">
+<pre>				// Parameters are on the stack
+				// Constant is new Top-of-stack offset
+				// (aka ``high_water_mark'')<br>
+	function_call -&gt; <strong>call</strong> ident `(` const_int `)'
+</pre>
+</a>
+<a name="304">
+<pre>	compound_stmt -&gt; `{` stmt_list `}'
+</pre>
+</a>
+<a name="306">
+<pre>	return_stmt -&gt; <strong>return
+</strong></pre>
+</a>
+<a name="308">
+<strong>Expressions</strong><p>
+</a>
+<a name="310">
+<pre>	expr -&gt; bin_op expr expr
+		-&gt; unary_op expr
+		-&gt; variable
+		-&gt; <strong>address_of</strong> variable			// for VAR parameters
+		-&gt; const_int
+		-&gt; const_real
+</pre>
+</a>
+<a name="312">
+<pre>	bin_op -&gt; `add_int' | `minus_int' | `mult_int' | `div_int' 
+		-&gt; `mod_int'
+		-&gt; `lt_int` | `gt_int' | `le_int' | `ge_int'
+		-&gt; `ne_int' | `eq_int'
+<br>
+		-&gt; `add_real' | `minus_real' | `mult_real' | `div_real' 
+		-&gt; `lt_real` | `gt_real' | `le_real' | `ge_real'
+		-&gt; `ne_real' | `eq_real'
+<br>
+		-&gt; `and_int' | `or_int'
+</pre>
+</a>
+<a name="314">
+<pre>	unary_op -&gt; `uminus_int' | `uminus_real' | `complement_int'
+</pre>
+</a>
+<a name="316">
+<pre>
+</pre>
+</a>
+<a name="318">
+<pre>	variable -&gt; datatype object_area offset
+</pre>
+</a>
+<a name="320">
+<pre>	datatype -&gt; <strong>integer</strong> | <strong>real</strong> | <strong>big
+</strong></pre>
+</a>
+<a name="322">
+<pre>	object_area -&gt; <strong>local</strong> | <strong>global</strong> | <strong>reference
+</strong></pre>
+</a>
+<a name="324">
+<pre>	offset -&gt; expr
+</pre>
+</a>
+<a name="326">
+<h2>Example Transformation</h2>
+</a>
+<a name="328">
+Given the `classic' factorial function:<p>
+</a>
+<a name="330">
+<pre>	function int factorial ( int n )
+	{
+		if (n &lt;= 0)
+		{
+			return( 1 );
+		}
+		else
+		{
+			return( n * factorial( n - 1 ));
+	}	}
+</pre>
+</a>
+<a name="332">
+We can see by inspection that there are no undefined variables or parse errors. We would expect the following transformation into prefix form:<p>
+</a>
+<a name="334">
+<pre>	factorial			// `n' occupies stack pos `-8'
+	{
+		if le_int integer local `-8' 
+			`0'
+		{
+				 // Address of result
+			assign integer local `-4'
+				`1'
+			return
+		}
+		else
+		{
+					// Callee's param
+			assign	integer local `8'
+				minus_int integer local `-8'
+						`1'
+			call factorial( `16' )
+			assign	int local `-4'
+				mult_int integer local `-8'
+					integer local `12'
+						 // Callee's result
+			return
+	}	}
+</pre>
+</a>
+<a name="336">
+Another example would probably be in order:<p>
+</a>
+<a name="338">
+<pre>	type vector = array[ 1..10 ] of real;
+</pre>
+</a>
+<a name="340">
+<pre>	function real dot_product( vector x, vector y)
+	{
+		int i;
+		real result;
+
+		result := 0.0;
+		i := 1;
+		while (i &lt;= 10) {
+			result := result + x[ i ] * y[ i ];
+			i := i + 1;
+		};
+		return( result );
+	}
+</pre>
+</a>
+<a name="342">
+This would translate into:<p>
+</a>
+<a name="992">
+<pre>   dot_product {
+      assign real local `12' 0.0'			// result
+      assign integer local `8' `1'			// i
+      while le_int integer local `8' `10' {
+         assign real local `12'
+            add_real real local `12'
+                     mult_real 
+                       real local 		// x[ i ]
+                          add_int `-44'
+                                  mult_int minus_int integer local `8'
+                                                     `1'
+                                           `4'
+                       real local                            // y[ i ]
+                          add_int `-84'
+                                  mult_int minus_int integer local `8'
+                                                     `1'
+                                           `4'
+         assign integer local `8'
+            add_int integer local `8'
+                    `1'
+      }
+   assign real local `-4' real local `12'
+}
+</pre>
+</a>
+
+<p><hr>
+
+<h5>Last Modified: March 26, 1996</h5>
+</body>
+</html>

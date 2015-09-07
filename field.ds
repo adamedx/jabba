@@ -1,0 +1,39 @@
+
+type T1 = array[ 2..11 ] of int;
+
+type T2 = record
+    int a, b, c;
+    T1  F;
+    int x, y, z;
+end;
+
+type T3 = array[ 3..12 ] of T2;
+
+function void main()
+{
+    int i, j, k;
+    T3  X;
+
+    i := 20;
+    j := 4;
+    k := 3;
+
+    X[ 5 ].F[ 7 ] := 17;
+    println(" X[ 5 ].F[ 7 ] = ", 
+            X[ 5 ].F[ 7 ], 
+            " -- should be 17" );
+    println;
+
+    X[ i / j ].F[ j + k ] := 23;
+    println(" X[ 5 ].F[ 7 ] = ", X[ 5 ].F[ 7 ], 
+            " -- should be 23 " );
+    println(" X[ i / j ].F[ j + k ] = ", 
+            X[ i / j ].F[ j + k ],
+            " -- should be 23 " );
+    println;
+
+    println(" i = ", i, " j = ", j, " i/j = ", i/j,
+            " -- should be 20:4:5" );
+    println(" j = ", j, " k = ", k, " j+k = ", j+k,
+            " -- should be 4:3:7" );
+}

@@ -1,0 +1,22 @@
+ global -8 
+
+		 // Line Number 10 
+
+ main 
+ { 0 
+     assign integer local -52  1 
+     assign integer local -56  2 
+
+		 // Line Number 20 
+
+     assign integer local -60  3 
+     assign big 12  local -64  big 12  local -52 
+     print "thing.second = 2?" 
+     print integer local -56 
+     println
+     print "thing2.second = 2?" 
+     print integer local -68 
+     println
+
+ }
+

@@ -1,0 +1,66 @@
+
+    // ARRAY.ds
+
+    // Some type definitions, and then
+    // Some array calculations
+
+type T1 = array[ 1..10 ] of int;
+
+type T2 = array[ 1..10 ] of T1;
+
+    // Notice that this also uses GLOBAL variables
+
+T1  gX;
+T2  gY;
+
+function void main()
+{
+    int i, j, k;
+    T1  X;
+    T2  Y;
+
+    // Assignments to scalars
+
+    i := 5;
+    j := 1;
+    k := 3;
+
+    // Assignments to X
+
+    X[ 2 ] := 17;
+    X[ i + j ] := 23;
+
+    println(" The value of X[ 2 ] is ", X[ 2 ] , " -- should be 17 ");
+    println(" The value of X[ j+j ] is ", X[ j+j ], " -- should be 17" );
+
+    println(" The value of X[ 6 ] is ", X[ 6 ], " -- should be 23" );
+    println(" The value of X[ i+j ] is ", X[ i + j ], " -- should be 23 " );
+
+
+    // Assignments to Y
+
+    Y[ 2 ][ 2 ] := 29;
+
+    println(" The value of Y[ 2 ][ 2 ] is ", Y[ 2 ][ 2 ], " -- should be 29" );
+    println(" The value of Y[j+j][j+j] is ", Y[j+j][j+j], " -- should be 29" );
+
+    Y[ k * k - j ][ i * j ] := 31;
+
+    println(" The value of Y[ 8 ][ 5 ] is ", Y[ 8 ][ 5 ], " -- should be 31 " );
+    println(" The value of Y[ k*i-i-2 ][ i + k - 2 * j - 1 ] is ", 
+                    Y[ k*i-i-2 ][ i + k - 2 * j - 1 ], " -- should be 31 " );
+
+        // Reference GLOBAL variables
+
+    gX[ 2 ] := 17;
+    gX[ i + j ] := 23;
+
+    println(" The value of gX[ 2 ] is ", gX[ 2 ], " -- should be 17 " );
+    println(" The value of gX[ 6 ] is ", gX[ 6 ], " -- should be 23 " );
+
+    gY[ 2 ][ 2 ] := 29;
+    gY[ k * k - j ][ i * j ] := 31;
+    println(" The value of gY[ 2 ][ 2 ] is ", gY[ 2 ][ 2 ], " -- should be 29");
+    println(" The value of gY[ 8 ][ 5 ] is ", gY[ 8 ][ 5 ], " -- should be 31");
+}
+

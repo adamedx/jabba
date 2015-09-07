@@ -1,0 +1,199 @@
+//////////////////////////////////////////
+// sierpinski gasket
+
+
+// first, define our matrix
+type column = array[ 0..79 ] of int;
+type  matrix = array[ 0..39 ] of column;
+
+type vertex = record
+    int x;
+    int y;
+end;
+
+type vertexlist = array[0 .. 2] of vertex;
+type matrix2 = array[0 .. 3199] of int;
+
+matrix matrix;
+matrix2 linmatrix;
+
+// Program input:
+int xstart,ystart;
+int time;
+
+function int MatrixGet(int row, int column)
+    {
+    return (linmatrix[row * 80 + column]);
+    };
+
+function void MatrixSet(int row, int column)
+    {
+    linmatrix[row * 80 + column] := 1;
+    };
+
+function void MatrixReset(int row, int column)
+    {
+    linmatrix[row * 80 + column] := 0;
+    };
+
+////////////////////////////////////////
+// rnd
+// generates a "random" number between
+// 0 and maxint (2^31 - 1) given any
+// such number
+
+int g_seed; // seed for random generator
+
+
+vertexlist input;
+
+int m,m1;
+function int randmult(int p, int q)
+	{
+
+  	int p1, p0,q1,q0;
+
+	p1 := p/m1;
+	p0 := p % m1;
+	q1 := q/m1; q0 := q % m1;
+	return ((((p0 * q1 + p1 * q0) % m1)*m1+p0*q0)%m);
+	};
+
+function int rnd(int r)
+	{
+    int b;
+	b := 31415821;
+	g_seed := (randmult(g_seed,	b) + 1) % m;
+	return (((g_seed/m1)*r)/m1);
+	};
+
+
+////////////////////////////////////////////////
+// initmatrix
+// clears the matrix, which is our "screen"
+// for this program
+
+function void initmatrix()
+    {
+    int row;
+    int column;
+
+    row := 0;
+
+    while(row < 40)
+        {
+	column := 0;
+        while(column < 80)
+            {
+            MatrixReset(row,column);
+			column := column + 1;		
+            };
+		row := row + 1;
+        };
+    };
+
+
+/////////////////////////////////////////////
+// GetInput()
+// normally, you would ask the user for this,
+// but we haven't implemented input (yet).
+
+function void GetInput()
+    {
+
+
+    input [0].x := 0;
+    input [0].y := 39;
+
+    input [1].x := 39;
+    input [1].y := 0;
+
+    input [2].x := 79;
+    input [2].y := 39;
+
+    xstart := 5;
+    ystart := 5;
+
+    time := 2000;
+
+    g_seed := 29474;
+
+    };
+
+/////////////////////////////////////////////////////
+// printmatrix()
+// prints out our screen
+
+function void printmatrix()
+    {
+    int row;
+    int column;
+
+    row := 0;
+
+    while(row < 40)
+        {
+	column := 0;
+        while(column < 80)
+            {
+            if(MatrixGet(row,column)) then
+                {
+                print("X");
+                }
+            else
+                {
+                print(" ");
+                };
+			column := column + 1;
+            };
+        println("");
+	row := row + 1;
+        };
+    };
+
+////////////////////////////////////
+// main()
+
+function void main()
+    {
+    vertexlist tri; // a triangle whose coords lie in the matrix;
+    int curtime;    // current iteration -- we'll quit to avoid infinite loop
+    int curx, cury; // our current spot in the matrix
+    int ivertex;    // index of the vertix we want to move towards...
+
+    curtime := 0;
+	m := 1000000000;
+	m1 := 10000;
+
+    GetInput();
+
+    tri := input;
+
+    initmatrix();   // initialize our "screen"
+
+    // do the sierpinski thang....
+    while(curtime < time)
+        {
+        // chooses a vertex of the triangle
+        ivertex := rnd(3);
+	ivertex := ivertex % 3;
+
+        // these two lines move you halfway to the
+        // chosen vertex from the current position
+        curx := curx + (tri[ivertex].x - curx) / 2;
+        cury := cury + (tri[ivertex].y - cury) / 2;
+        if(curtime > 8) then
+		{
+		MatrixSet(cury,curx);
+		};	
+        curtime := curtime + 1;
+        };
+
+    // print the matrix;
+    printmatrix();
+    };
+
+
+
+
+

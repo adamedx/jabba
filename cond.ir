@@ -1,0 +1,47 @@
+ global -8 
+ main 
+ { 0 
+     assign integer local -40  8 
+
+		 // Line Number 10 
+
+     print "Conditional test" 
+     println
+     while integer local -40 
+     { -44 
+       print "    Iteration " 
+       print integer local -40 
+       println
+       if == integer local -40  4 
+       then
+       { -44 
+         print "        The if of if-then-else works -- i = 4?" 
+         print integer local -40 
+         println
+
+       }
+
+       else
+       { -44 
+
+		 // Line Number 20 
+
+         if == integer local -40  6 
+         then
+         { -44 
+           print "            The if and else of if then else work too! i = 6?" 
+           print integer local -40 
+           println
+
+         }
+
+
+       }
+
+       assign integer local -40  - integer local -40  1 
+
+     }
+
+
+ }
+

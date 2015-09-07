@@ -1,0 +1,49 @@
+ global -4 
+ nested 
+ { 0 
+     print " Nested: Global = " 
+     print integer global 0 
+
+     print " :: First = " 
+     print integer local 8 
+
+     print " :: Second = " 
+     print integer local 4 
+     println
+
+		 // Line Number 10 
+
+     return
+
+ }
+
+ main 
+ { 0 
+     assign integer global 0  1 
+     assign integer local -40  1 
+     assign integer local -44  3 
+     call nested  (-48) 
+
+
+		 // Line Number 20 
+
+
+ 	// Second round
+     assign integer global 0  + integer global 0  1 
+     assign integer local -40  + 1  1 
+     assign integer local -44  - 3  1 
+     call nested  (-48) 
+
+
+ 	// Third round
+     assign integer global 0  + integer global 0  1 
+
+		 // Line Number 30 
+
+     assign integer local -40  + + 1  1  1 
+     assign integer local -44  - 3  2 
+     call nested  (-48) 
+
+
+ }
+

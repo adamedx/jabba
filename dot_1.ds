@@ -1,0 +1,49 @@
+
+type vector = array[ 1 .. 10 ] of real;
+
+function real dot_product( vector x, vector y )
+{
+    int i;
+    real result;
+
+    i := 1;
+    result := 0.0;
+    while (i <= 10)
+    {
+        result := result + x[ i ] * y[ i ];
+
+        i := i + 1;
+    };
+
+    return( result );
+};
+
+
+function void main()
+{
+    int i;
+    real result;
+    vector x, y;
+   
+    i := 1;
+    while (i <= 10 )
+    {
+            // Initialize X
+
+        x[ i ] := i;
+
+            // Initialize Y
+
+        y[ i ] := 10 - i + 1;
+
+            // Increment iterator
+
+        i := i + 1;
+    };
+
+    println(" The result of the dot_product SHOULD be 220.0" );
+
+    result := dot_product( x, y );
+
+    println(" The result of the dot_product is ", result );
+}

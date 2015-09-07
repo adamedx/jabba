@@ -1,0 +1,66 @@
+ global 0 
+ factorial 
+ { 0 
+     if <= integer local 8  0 
+     then
+     { -40 
+       assign integer local 4  1 
+       return
+
+     }
+
+     else
+     { -40 
+       assign integer local -40  - integer local 8  1 
+       call factorial  (-48) 
+       assign integer local 4  * integer local 8  integer local -44 
+       return
+
+		 // Line Number 10 
+
+
+     }
+
+ }
+
+ FACTORIAL 
+ { 0 
+     assign integer local -40  1 
+     while > integer local 8  0 
+     { -44 
+
+		 // Line Number 20 
+
+       assign integer local -40  * integer local -40  integer local 8 
+       assign integer local 8  - integer local 8  1 
+
+     }
+
+     assign integer local 4  integer local -40 
+     return
+
+ }
+
+ main 
+ { 0 
+
+		 // Line Number 30 
+
+     assign integer local -40  5 
+     print "The value of factorial(" 
+     print integer local -40 
+     print ") is " 
+     assign integer local -44  integer local -40 
+     call factorial  (-52) 
+     print integer local -48 
+     println
+     print "The value of FACTORIAL(" 
+     print integer local -40 
+     print ") is " 
+     assign integer local -44  integer local -40 
+     call FACTORIAL  (-52) 
+     print integer local -48 
+     println
+
+ }
+

@@ -1,0 +1,87 @@
+//////////////////////////////////////////
+// sierpinski gasket
+
+
+// first, define our matrix
+type column = array[ 0..79 ] of int;
+type  matrix = array[ 0..39 ] of column;
+
+type vertex = record
+    int x;
+    int y;
+end;
+
+type vertexlist = array[0 .. 2] of vertex;
+
+
+matrix matrix;
+// Program input:
+int xstart,ystart;
+int time;
+
+/////////////////////////////////////////////////////
+// printmatrix()
+// prints out our screen
+
+function void printmatrix()
+    {
+    int row;
+    int column;
+
+    column :=0;
+    row := 0;
+
+    while(row < 40)
+        {
+        while(column < 80)
+            {
+            if(matrix[row][column] == 1) then
+                {
+                print("X");
+                }
+            else
+                {
+                print(" ");
+                };
+            };
+        println("");
+        };
+    };
+
+////////////////////////////////////
+// main()
+
+function void main()
+    {
+    vertexlist tri; // a triangle whose coords lie in the matrix;
+    int curtime;    // current iteration -- we'll quit to avoid infinite loop
+    int curx, cury; // our current spot in the matrix
+    int ivertex;    // index of the vertix we want to move towards...
+
+    curtime := 0;
+
+    GetInput();
+
+    tri := input;
+
+    initmatrix();   // initialize our "screen"
+
+    // do the sierpinski thang....
+    while(curtime < time)
+        {
+        rnd();
+
+        // chooses a vertex of the triangle
+        ivertex := rndnum;
+
+        // these two lines move you halfway to the
+        // chosen vertex from the current position
+        curx := curx + (tri[ivertex].x - curx) / 2;
+        cury := cury + (tri[ivertex].y - cury) / 2;
+        matrix[cury][curx] := 1;
+        curtime := curtime + 1;
+        };
+
+    // print the matrix;
+    printmatrix();
+    };

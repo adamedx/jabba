@@ -1,0 +1,31 @@
+ global 0 
+ main 
+ { 0 
+     assign integer local -40  0 
+     assign integer local -44  1 
+
+		 // Line Number 10 
+
+     assign integer local -48  3 
+     assign integer local -52  17 
+     assign integer local -56  < integer local -44  integer local -48 
+     print "The value of 'b' is " 
+     print integer local -56 
+     print " -- should be 1" 
+     println
+     assign integer local -56  && > integer local -44  integer local -48  <> integer local -40  0 
+     print "The value of 'b' is " 
+     print integer local -56 
+     print " -- should be 0" 
+     println
+
+		 // Line Number 20 
+
+     assign integer local -56  && <> integer local -40  0  > / integer local -52  integer local -40  integer local -48 
+     print "The value of 'b' is " 
+     print integer local -56 
+     print " -- should be 0 " 
+     println
+
+ }
+

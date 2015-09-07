@@ -1,0 +1,111 @@
+	.data
+__endline__:	.asciiz	"\n"
+	.text
+__copystart:    # routine to copy BIG types
+	lw      $a3,0($a1)
+	sw      $a3,0($a0)
+	addi    $a0,$a0,-4
+	addi    $a1,$a1,-4
+	addi    $a2,$a2,-4
+__copy:
+	bgtz    $a2,__copystart
+	jr      $ra
+F:		.data
+L0:	.asciiz	" within the call, x = "
+	.text
+	.data
+L1:	.asciiz	" -- should be 31"
+	.text
+
+	sw $fp,0($sp)
+	sw $ra,-4($sp)
+	move $fp,$sp
+	lw $t0,0($gp)
+	lw $t1,-4($gp)
+	lw $t2,4($a3)
+	mul $t1,$t1,$t2
+	add $t0,$t0,$t1
+	lw $t3,8($fp)
+	add $t0,$t0,$t3
+	sw $t0,4($a3)
+	la $a0,L0
+	li $v0,4
+	syscall 
+	lw $t4,4($a3)
+	move $a0,$t4
+	li $v0,1
+	syscall 
+	la $a0,L1
+	li $v0,4
+	syscall 
+	la $a0,__endline__
+	li $v0,4
+	syscall 
+	move $sp,$fp
+	lw $ra,-4($sp)
+	lw $fp,0($sp)
+	jr $ra
+# // Line Number 10 
+main:	
+__start:
+	la $a3,0($sp)
+# // Line Number 20 
+	.data
+L2:	.asciiz	" before the call, i = "
+	.text
+	.data
+L3:	.asciiz	" -- should be 4"
+	.text
+	.data
+L4:	.asciiz	" after the call, i = "
+	.text
+	.data
+L5:	.asciiz	" -- should be 31 "
+	.text
+
+	sw $fp,0($sp)
+	sw $ra,-4($sp)
+	move $fp,$sp
+	li $t5,2
+	sw $t5,0($gp)
+	li $t6,3
+	sw $t6,-4($gp)
+	li $t7,4
+	sw $t7,-40($fp)
+	la $a0,L2
+	li $v0,4
+	syscall 
+	lw $s0,-40($fp)
+	move $a0,$s0
+	li $v0,1
+	syscall 
+	la $a0,L3
+	li $v0,4
+	syscall 
+	la $a0,__endline__
+	li $v0,4
+	syscall 
+	li $s1,17
+	sw $s1,-48($fp)
+	addi $s2,$fp,-40
+	sub $s2,$s2,$a3
+	sw $s2,-52($fp)
+	la $sp,-56($fp)
+	jal F
+	la $a0,L4
+	li $v0,4
+	syscall 
+	lw $s3,-40($fp)
+	move $a0,$s3
+	li $v0,1
+	syscall 
+	la $a0,L5
+	li $v0,4
+	syscall 
+	la $a0,__endline__
+	li $v0,4
+	syscall 
+	move $sp,$fp
+	lw $ra,-4($sp)
+	lw $fp,0($sp)
+	jr $ra

@@ -1,0 +1,28 @@
+ global -8 
+ main 
+ { 0 
+     assign integer local -40  10 
+
+		 // Line Number 10 
+
+     assign integer local -44  uminus integer local -40 
+     print "Pos: " 
+     print integer local -40 
+     println
+     print "Neg: " 
+     print integer local -44 
+     println
+     assign integer local -48  5 
+     assign integer local -52  ! integer local -48 
+     print "True: " 
+     print integer local -48 
+     println
+     print "False: " 
+     print integer local -52 
+     println
+
+		 // Line Number 20 
+
+
+ }
+

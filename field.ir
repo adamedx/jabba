@@ -1,0 +1,53 @@
+ global 0 
+
+		 // Line Number 10 
+
+ main 
+ { 0 
+     assign integer local -40  20 
+     assign integer local -44  4 
+     assign integer local -48  3 
+
+		 // Line Number 20 
+
+     assign integer local - -64  + * 64  - 5  3  * 4  - 7  2  17 
+     print " X[ 5 ].F[ 7 ] = " 
+     print integer local - -64  + * 64  - 5  3  * 4  - 7  2 
+     print " -- should be 17" 
+     println
+     println
+     assign integer local - -64  + * 64  - / integer local -40  integer local -44  3  * 4  - + integer local -44  integer local -48  2  23 
+     print " X[ 5 ].F[ 7 ] = " 
+     print integer local - -64  + * 64  - 5  3  * 4  - 7  2 
+     print " -- should be 23 " 
+     println
+
+		 // Line Number 30 
+
+     print " X[ i / j ].F[ j + k ] = " 
+     print integer local - -64  + * 64  - / integer local -40  integer local -44  3  * 4  - + integer local -44  integer local -48  2 
+     print " -- should be 23 " 
+     println
+     println
+     print " i = " 
+     print integer local -40 
+     print " j = " 
+     print integer local -44 
+     print " i/j = " 
+     print / integer local -40  integer local -44 
+     print " -- should be 20:4:5" 
+     println
+     print " j = " 
+     print integer local -44 
+     print " k = " 
+     print integer local -48 
+     print " j+k = " 
+     print + integer local -44  integer local -48 
+     print " -- should be 4:3:7" 
+     println
+
+ }
+
+
+		 // Line Number 40 
+

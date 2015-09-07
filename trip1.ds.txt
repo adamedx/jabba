@@ -1,0 +1,54 @@
+//////////////////////////////////////////
+// sierpinski gasket
+
+
+// first, define our matrix
+type column = array[ 0..79 ] of int;
+type  matrix = array[ 0..39 ] of column;
+
+type vertex = record
+    int x;
+    int y;
+end;
+
+type vertexlist = array[0 .. 2] of vertex;
+
+
+matrix matrix;
+// Program input:
+int xstart,ystart;
+int time;
+
+////////////////////////////////////////
+// rnd
+// generates a "random" number between
+// 0 and maxint (2^31 - 1) given any
+// such number
+
+int g_seed; // seed for random generator
+
+int rndnum;
+vertexlist input;
+
+function int rnd()
+{
+    int i;
+    int num;
+
+    i := g_seed % 7;
+
+    num := g_seed;
+
+    while(i)
+        {
+        num := num * 75;
+        num := num % 137438953471 - i;
+        i := i - 1;
+        };
+
+     // maximum size of an int
+
+    g_seed := num;
+
+    rndnum := num;
+};

@@ -1,0 +1,120 @@
+ global -8 
+ main 
+ { 0 
+     assign integer local -48  3 
+
+		 // Line Number 10 
+
+     assign integer local -44  2 
+     assign integer local -40  1 
+     print 3 
+     println
+     print integer local -48 
+     print integer local -44 
+     print integer local -40 
+     println
+     assign integer global 0  4 
+     assign integer global -4  5 
+
+		 // Line Number 20 
+
+     print integer global 0 
+     print integer global -4 
+     println
+     print + 2  3 
+     println
+     assign integer local -52  + + integer global 0  integer global -4  integer local -40 
+     print integer global 0 
+     print " + " 
+     print integer global -4 
+     print " + " 
+     print integer local -40 
+     print " = " 
+     print integer local -52 
+     println
+     print "-: " 
+     print "third - first = 2? " 
+     print - integer local -48  integer local -40 
+     println
+     print "*: " 
+     print "second * third = 6? " 
+     print * integer local -44  integer local -48 
+     println
+     print "/: sum / 3 = 3? " 
+     print / integer local -52  3 
+     println
+
+		 // Line Number 30 
+
+     print "%: sum % 3 = 1? " 
+     print % integer local -52  3 
+     println
+     print "<: global1 < sum = 1? " 
+     print < integer global 0  integer local -52 
+     println
+     print "<: global1 < global1 = 0?" 
+     print < integer global 0  integer global 0 
+     println
+     print "<: sum < global1 = 0? " 
+     print < integer local -52  integer global 0 
+     println
+     print ">: global1 > sum = 0? " 
+     print > integer global 0  integer local -52 
+     println
+     print ">: sum > 10 = 0? " 
+     print > integer local -52  10 
+     println
+     print ">: sum > global1 = 1? " 
+     print > integer local -52  integer global 0 
+     println
+     print "<=: global1 <= sum = 1? " 
+     print <= integer global 0  integer local -52 
+     println
+     print "<=: global1 <= global1 = 1?" 
+     print <= integer global 0  integer global 0 
+     println
+     print "<=: sum <= global1 = 0? " 
+     print <= integer local -52  integer global 0 
+     println
+
+		 // Line Number 40 
+
+     print ">=: global1 >= sum = 0? " 
+     print >= integer global 0  integer local -52 
+     println
+     print ">=: sum >= 10 = 1? " 
+     print >= integer local -52  10 
+     println
+     print ">=: sum >= global1 = 1? " 
+     print >= integer local -52  integer global 0 
+     println
+     print "<>: sum <> 10 = 0? " 
+     print <> integer local -52  10 
+     println
+     print "<>: 3 <> global1 = 1? " 
+     print <> 3  integer global 0 
+     println
+     print "==: sum <> 10 = 1? " 
+     print == integer local -52  10 
+     println
+     print "==: 3 <> global1 = 1? " 
+     print == 3  integer global 0 
+     println
+     print "or: 1 or 0 = 1? " 
+     print || 1  0 
+     println
+     print "or: 0 or 0 = 0? " 
+     print || 0  0 
+     println
+     print "and: 1 or 1 = 1? " 
+     print && 1  1 
+     println
+
+		 // Line Number 50 
+
+     print "and: 0 or 1 = 0? " 
+     print && 0  1 
+     println
+
+ }
+

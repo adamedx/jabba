@@ -1,0 +1,276 @@
+ global -25648 
+
+ 	//////////////////////////////////////////
+
+ 	// sierpinski gasket
+
+ 	// first, define our matrix
+
+		 // Line Number 10 
+
+
+		 // Line Number 20 
+
+
+ 	// Program input:
+ MatrixGet 
+ { 0 
+     assign integer local 4  integer global - -12800  * 4  + * integer local 12  80  integer local 8 
+     return
+
+ }
+
+ MatrixSet 
+ { 0 
+
+		 // Line Number 30 
+
+     assign integer global - -12800  * 4  + * integer local 8  80  integer local 4  1 
+
+ }
+
+ MatrixReset 
+ { 0 
+     assign integer global - -12800  * 4  + * integer local 8  80  integer local 4  0 
+
+ }
+
+
+ 	////////////////////////////////////////
+
+		 // Line Number 40 
+
+
+ 	// rnd
+
+ 	// generates a "random" number between
+
+ 	// 0 and maxint (2^31 - 1) given any
+
+ 	// such number
+
+ 	// seed for random generator
+
+		 // Line Number 50 
+
+ randmult 
+ { 0 
+     assign integer local -40  / integer local 12  integer global -25644 
+     assign integer local -44  % integer local 12  integer global -25644 
+     assign integer local -48  / integer local 8  integer global -25644 
+     assign integer local -52  % integer local 8  integer global -25644 
+     assign integer local 4  % + * % + * integer local -44  integer local -48  * integer local -40  integer local -52  integer global -25644  integer global -25644  * integer local -44  integer local -52  integer global -25640 
+     return
+
+		 // Line Number 60 
+
+
+ }
+
+ rnd 
+ { 0 
+     assign integer local -40  31415821 
+     assign integer local -44  integer global -25612 
+     assign integer local -48  integer local -40 
+     call randmult  (-56) 
+     assign integer global -25612  % + integer local -52  1  integer global -25640 
+     assign integer local 4  / * / integer global -25612  integer global -25644  integer local 8  integer global -25644 
+     return
+
+ }
+
+
+		 // Line Number 70 
+
+
+ 	////////////////////////////////////////////////
+
+ 	// initmatrix
+
+ 	// clears the matrix, which is our "screen"
+
+ 	// for this program
+ initmatrix 
+ { 0 
+
+		 // Line Number 80 
+
+     assign integer local -40  0 
+     while < integer local -40  40 
+     { -48 
+       assign integer local -44  0 
+       while < integer local -44  80 
+       { -48 
+         assign integer local -48  integer local -40 
+         assign integer local -52  integer local -44 
+         call MatrixReset  (-56) 
+
+         assign integer local -44  + integer local -44  1 
+
+		 // Line Number 90 
+
+
+       }
+
+       assign integer local -40  + integer local -40  1 
+
+     }
+
+
+ }
+
+
+ 	/////////////////////////////////////////////
+
+ 	// GetInput()
+
+ 	// normally, you would ask the user for this,
+
+ 	// but we haven't implemented input (yet).
+
+		 // Line Number 100 
+
+ GetInput 
+ { 0 
+     assign integer global - -25616  * 8  0  0 
+     assign integer global - -25620  * 8  0  39 
+     assign integer global - -25616  * 8  1  39 
+     assign integer global - -25620  * 8  1  0 
+
+		 // Line Number 110 
+
+     assign integer global - -25616  * 8  2  79 
+     assign integer global - -25620  * 8  2  39 
+     assign integer global -25600  5 
+     assign integer global -25604  5 
+     assign integer global -25608  10
+     assign integer global -25612  29474 
+
+		 // Line Number 120 
+
+
+ }
+
+
+ 	/////////////////////////////////////////////////////
+
+ 	// printmatrix()
+
+ 	// prints out our screen
+ printmatrix 
+ { 0 
+
+		 // Line Number 130 
+
+     assign integer local -40  0 
+     while < integer local -40  40 
+     { -48 
+       assign integer local -44  0 
+       while < integer local -44  80 
+       { -48 
+         assign integer local -48  integer local -40 
+         assign integer local -52  integer local -44 
+         call MatrixGet  (-60) 
+         if integer local -56 
+         then
+
+		 // Line Number 140 
+
+         { -48 
+           print "X" 
+
+
+         }
+
+         else
+         { -48 
+           print " " 
+
+
+         }
+
+         assign integer local -44  + integer local -44  1 
+
+       }
+
+       print "" 
+       println
+
+		 // Line Number 150 
+
+       assign integer local -40  + integer local -40  1 
+
+     }
+
+
+ }
+
+
+ 	////////////////////////////////////
+
+ 	// main()
+ main 
+ { 0 
+
+ 	// a triangle whose coords lie in the matrix;
+
+		 // Line Number 160 
+
+
+ 	// current iteration -- we'll quit to avoid infinite loop
+
+ 	// our current spot in the matrix
+
+ 	// index of the vertix we want to move towards...
+     assign integer local -64  0 
+     assign integer global -25640  1000000000 
+     assign integer global -25644  10000 
+     call GetInput  (-80) 
+
+
+		 // Line Number 170 
+
+     assign big 24  local -40  big 24  global -25616 
+     call initmatrix  (-80) 
+
+
+ 	// initialize our "screen"
+
+ 	// do the sierpinski thang....
+     while < integer local -64  integer global -25608 
+     { -80 
+
+ 	// chooses a vertex of the triangle
+       assign integer local -80  3 
+       call rnd  (-88)        assign integer local -76  integer local -84 
+
+       assign integer local -76  % integer local -76  3 
+
+		 // Line Number 180 
+
+       print integer local -76 
+       println
+
+ 	// these two lines move you halfway to the
+
+ 	// chosen vertex from the current position
+       assign integer local -68  + integer local -68  / - integer local - -40  * 8  integer local -76  integer local -68  2 
+       assign integer local -72  + integer local -72  / - integer local - -44  * 8  integer local -76  integer local -72  2 
+       assign integer local -80  integer local -72 
+       assign integer local -84  integer local -68 
+       call MatrixSet  (-88) 
+
+       assign integer local -64  + integer local -64  1 
+
+     }
+
+
+		 // Line Number 190 
+
+
+ 	// print the matrix;
+     call printmatrix  (-80) 
+
+
+ }
+

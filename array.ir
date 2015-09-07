@@ -1,0 +1,110 @@
+ global -440 
+
+ 	// ARRAY.ds
+
+ 	// Some type definitions, and then
+
+ 	// Some array calculations
+
+		 // Line Number 10 
+
+
+ 	// Notice that this also uses GLOBAL variables
+ main 
+ { 0 
+
+		 // Line Number 20 
+
+
+ 	// Assignments to scalars
+     assign integer local -40  5 
+     assign integer local -44  1 
+     assign integer local -48  3 
+
+ 	// Assignments to X
+
+		 // Line Number 30 
+
+
+     print "i is "
+     print integer local -40
+     println
+     print "j is "
+     print integer local -44
+     println
+     print "k is "
+     print integer local -48
+     println
+
+     assign integer local - -52  * 4  - 2  1  17 
+     assign integer local - -52  * 4  - + integer local -40  integer local -44  1  23 
+     print " The value of X[ 2 ] is " 
+     print integer local - -52  * 4  - 2  1 
+     print " -- should be 17 " 
+     println
+     print " The value of X[ j+j ] is " 
+     print integer local - -52  * 4  - + integer local -44  integer local -44  1 
+     print " -- should be 17" 
+     println
+     print " The value of X[ 6 ] is " 
+     print integer local - -52  * 4  - 6  1 
+     print " -- should be 23" 
+     println
+     print " The value of X[ i+j ] is " 
+     print integer local - -52  * 4  - + integer local -40  integer local -44  1 
+     print " -- should be 23 " 
+     println
+
+		 // Line Number 40 
+
+
+ 	// Assignments to Y
+     assign integer local - -92  + * 40  - 2  1  * 4  - 2  1  29 
+     print " The value of Y[ 2 ][ 2 ] is " 
+     print integer local - -92  + * 40  - 2  1  * 4  - 2  1 
+     print " -- should be 29" 
+     println
+     print " The value of Y[j+j][j+j] is " 
+     print integer local - -92  + * 40  - + integer local -44  integer local -44  1  * 4  - + integer local -44  integer local -44  1 
+     print " -- should be 29" 
+     println
+     assign integer local - -92  + * 40  - - * integer local -48  integer local -48  integer local -44  1  * 4  - * integer local -40  integer local -44  1  31 
+     print " The value of Y[ 8 ][ 5 ] is " 
+     print integer local - -92  + * 40  - 8  1  * 4  - 5  1 
+     print " -- should be 31 " 
+     println
+
+		 // Line Number 50 
+
+     print " The value of Y[ k*i-i-2 ][ i + k - 2 * j - 1 ] is " 
+     print integer local - -92  + * 40  - - - * integer local -48  integer local -40  integer local -40  2  1  * 4  - - - + integer local -40  integer local -48  * 2  integer local -44  1  1 
+     print " -- should be 31 " 
+     println
+
+ 	// Reference GLOBAL variables
+     assign integer global - 0  * 4  - 2  1  17 
+     assign integer global - 0  * 4  - + integer local -40  integer local -44  1  23 
+     print " The value of gX[ 2 ] is " 
+     print integer global - 0  * 4  - 2  1 
+     print " -- should be 17 " 
+     println
+     print " The value of gX[ 6 ] is " 
+     print integer global - 0  * 4  - 6  1 
+     print " -- should be 23 " 
+     println
+
+		 // Line Number 60 
+
+     assign integer global - -40  + * 40  - 2  1  * 4  - 2  1  29 
+     assign integer global - -40  + * 40  - - * integer local -48  integer local -48  integer local -44  1  * 4  - * integer local -40  integer local -44  1  31 
+     print " The value of gY[ 2 ][ 2 ] is " 
+     print integer global - -40  + * 40  - 2  1  * 4  - 2  1 
+     print " -- should be 29" 
+     println
+     print " The value of gY[ 8 ][ 5 ] is " 
+     print integer global - -40  + * 40  - 8  1  * 4  - 5  1 
+     print " -- should be 31" 
+     println
+
+ }
+

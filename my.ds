@@ -1,0 +1,174 @@
+//////////////////////////////////////////
+// sierpinski gasket
+
+
+// first, define our matrix
+type column = array[ 0..79 ] of int;
+type  matrix = array[ 0..39 ] of column;
+
+type vertex = record of
+    int x;
+    int y;
+end;
+
+type vertexlist = array[0 .. 2] of vertex;
+
+
+// Program input:
+int xstart,ystart;
+int time;
+
+////////////////////////////////////////
+// rnd
+// generates a "random" number between
+// 0 and maxint (2^31 - 1) given any
+// such number
+
+int g_seed; // seed for random generator
+
+int rndnum;
+function int rnd()
+{
+    int i;
+    int num;
+
+    i := g_seed % 7;
+
+    num := g_seed;
+
+    while(i)
+        {
+        num := num * 75;
+        num := num % 137438953471 - i;
+        i := i - 1;
+        };
+
+     // maximum size of an int
+
+    g_seed := num;
+
+    rndnum := num;
+};
+
+////////////////////////////////////////////////
+// initmatrix
+// clears the matrix, which is our "screen"
+// for this program
+
+function void initmatrix()
+    {
+    int row;
+    int column;
+
+    column :=0;
+    row := 0;
+
+    while(row < 40)
+        {
+        while(column < 80)
+            {
+            matrix[row][column] := 0;
+            };
+        };
+    };
+
+
+/////////////////////////////////////////////
+// GetInput()
+// normally, you would ask the user for this,
+// but we haven't implemented input (yet).
+
+vertexlist input;
+function void GetInput()
+    {
+
+
+    input[0].x := 0;
+    input[0].y := 39;
+
+    input[1].x := 39;
+    input[1].y := 0;
+
+    input[2].x := 79;
+    input[2].y := 39;
+
+    xstart := 5;
+    ystart := 5;
+
+    time := 10000;
+
+    seed := 29478234;
+
+    };
+
+/////////////////////////////////////////////////////
+// printmatrix()
+// prints out our screen
+
+void printmatrix()
+    {
+    int row;
+    int column;
+
+    column :=0;
+    row := 0;
+
+    while(row < 40)
+        {
+        while(column < 80)
+            {
+            if(matrix[row][column] == 1)
+                {
+                print("X");
+                }
+            else
+                {
+                print(" ");
+                };
+            };
+        println;
+        };
+    };
+
+////////////////////////////////////
+// main()
+
+function void main()
+    {
+    vertexlist tri; // a triangle whose coords lie in the matrix;
+    int curtime;    // current iteration -- we'll quit to avoid infinite loop
+    int curx, cury; // our current spot in the matrix
+    int ivertex;    // index of the vertix we want to move towards...
+
+    curtime := 0;
+
+    GetInput();
+
+    tri := input;
+
+    initmatrix();   // initialize our "screen"
+
+    // do the sierpinski thang....
+    while(curtime < time)
+        {
+        rnd();
+
+        // chooses a vertex of the triangle
+        ivertex := rndnum;
+
+        // these two lines move you halfway to the
+        // chosen vertex from the current position
+        curx := curx + (tri[ivertex].x - curx) / 2;
+        cury := cury + (tri[ivertex].y - cury) / 2;
+        matrix[cury][curx] := 1;
+        curtime := curtime + 1;
+        };
+
+    // print the matrix;
+    printmatrix();
+    };
+
+
+
+
+

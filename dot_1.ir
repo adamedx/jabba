@@ -1,0 +1,61 @@
+ global 0 
+ dot_product 
+ { 0 
+     assign integer local -40  1 
+
+		 // Line Number 10 
+
+     assign real local -44  0.000000 
+     while <= integer local -40  10 
+     { -48 
+       assign real local -44  + real local -44  * real local - 84  * 4  - integer local -40  1  real local - 44  * 4  - integer local -40  1 
+       assign integer local -40  + integer local -40  1 
+
+     }
+
+     assign real local 4  real local -44 
+     return
+
+ }
+
+
+		 // Line Number 20 
+
+ main 
+ { 0 
+     assign integer local -40  1 
+     while <= integer local -40  10 
+
+		 // Line Number 30 
+
+     { -128 
+
+ 	// Initialize X
+       assign real local - -48  * 4  - integer local -40  1  integer local -40 
+
+ 	// Initialize Y
+       assign real local - -88  * 4  - integer local -40  1  + - 10  integer local -40  1 
+
+ 	// Increment iterator
+
+		 // Line Number 40 
+
+       assign integer local -40  + integer local -40  1 
+
+     }
+
+     print " The result of the dot_product SHOULD be 220.0" 
+     println
+     assign big 40  local -128  big 40  local -48 
+     assign big 40  local -168  big 40  local -88 
+     call dot_product  (-212)      assign real local -44  real local -208 
+
+     print " The result of the dot_product is " 
+     print real local -44 
+     println
+
+ }
+
+
+		 // Line Number 50 
+

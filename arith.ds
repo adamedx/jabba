@@ -1,0 +1,37 @@
+    // arith.ds
+    
+    // Start with simple integer and real arithmetic
+
+function void main()
+{
+    int i, j, k;
+
+    real x, y, z;
+
+    i := 1;
+    j := 2;
+    k := 3;
+
+
+    println(" The value of 'i + j * k' should be (7) -- ", i + j * k );
+
+    x := 1.0;
+    y := 3.14159;
+    z := x * y;
+
+        // Here's the move to k
+
+    k := z;
+
+    println;
+    println(" We should get PI and 3 ");
+    println(" The value of z and k are ", z, " and ", k );
+    println;
+
+    x := 1;
+
+    z := x * y;
+
+    println(" We should, again, get PI ");
+    println(" The value of Z is ", z );
+}

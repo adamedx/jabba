@@ -1,0 +1,24 @@
+function void main()
+{
+    int zero;
+    int i, j, k;
+    int b;
+
+    zero := 0;
+
+    i := 1;
+    j := 3;
+    k := 17;
+
+    b := i < j;
+
+    println( "The value of 'b' is ", b, " -- should be 1");
+
+    b := (i > j) && (zero != 0);
+
+    println( "The value of 'b' is ", b, " -- should be 0");
+
+    b := (zero != 0) && ((k / zero) > j);
+
+    println( "The value of 'b' is ", b, " -- should be 0 ");
+}

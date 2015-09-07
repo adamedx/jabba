@@ -1,0 +1,47 @@
+ global 0 
+
+ 	// arith.ds
+
+ 	// Start with simple integer and real arithmetic
+ main 
+ { 0 
+
+		 // Line Number 10 
+
+     assign integer local -40  1 
+     assign integer local -44  2 
+     assign integer local -48  3 
+     print " The value of 'i + j * k' should be (7) -- " 
+     print + integer local -40  * integer local -44  integer local -48 
+     println
+     assign real local -52  1.000000 
+     assign real local -56  3.141590 
+
+		 // Line Number 20 
+
+     assign real local -60  * real local -52  real local -56 
+
+ 	// Here's the move to k
+     assign integer local -48  real local -60 
+     println
+     print " We should get PI and 3 " 
+     println
+     print " The value of z and k are " 
+     print real local -60 
+     print " and " 
+     print integer local -48 
+     println
+     println
+
+		 // Line Number 30 
+
+     assign real local -52  1 
+     assign real local -60  * real local -52  real local -56 
+     print " We should, again, get PI " 
+     println
+     print " The value of Z is " 
+     print real local -60 
+     println
+
+ }
+

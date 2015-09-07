@@ -1,0 +1,70 @@
+//////////////////////////////////////////
+// sierpinski gasket
+
+
+// first, define our matrix
+type column = array[ 0..79 ] of int;
+type  matrix = array[ 0..39 ] of column;
+
+type vertex = record
+    int x;
+    int y;
+end;
+
+type vertexlist = array[0 .. 2] of vertex;
+
+
+matrix matrix;
+// Program input:
+int xstart,ystart;
+int time;
+
+////////////////////////////////////////////////
+// initmatrix
+// clears the matrix, which is our "screen"
+// for this program
+
+function void initmatrix()
+    {
+    int row;
+    int column;
+
+    column :=0;
+    row := 0;
+
+    while(row < 40)
+        {
+        while(column < 80)
+            {
+            matrix[row][column] := 0;
+            };
+        };
+    };
+
+
+/////////////////////////////////////////////
+// GetInput()
+// normally, you would ask the user for this,
+// but we haven't implemented input (yet).
+
+function void GetInput()
+    {
+
+
+    input [0].x := 0;
+    input [0].y := 39;
+
+    input [1].x := 39;
+    input [1].y := 0;
+
+    input [2].x := 79;
+    input [2].y := 39;
+
+    xstart := 5;
+    ystart := 5;
+
+    time := 10000;
+
+    g_seed := 29478234;
+
+    };

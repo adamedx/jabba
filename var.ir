@@ -1,0 +1,37 @@
+ global -12 
+ F 
+ { 0 
+     assign integer pointer integer local 4  + + integer global 0  * integer global -4  integer pointer integer local 4  integer local 8 
+     print " within the call, x = " 
+     print integer pointer integer local 4 
+     print " -- should be 31" 
+     println
+
+ }
+
+
+		 // Line Number 10 
+
+ main 
+ { 0 
+     assign integer global 0  2 
+     assign integer global -4  3 
+     assign integer local -40  4 
+
+		 // Line Number 20 
+
+     print " before the call, i = " 
+     print integer local -40 
+     print " -- should be 4" 
+     println
+     assign integer local -48  17 
+     assign integer local -52  ADDRESS_OF integer local -40 
+     call F  (-56) 
+
+     print " after the call, i = " 
+     print integer local -40 
+     print " -- should be 31 " 
+     println
+
+ }
+

@@ -1,0 +1,457 @@
+
+c:/data/source/jabba/jabba.h,1253
+#define _JABBA_H7,97
+#define ACTIVATION_OVERHEAD	32,461
+#define MAX_STRINGSERVER_STRINGS 34,526
+#define MAX_STRINGSERVER_STRINGSIZE 35,562
+#define SZENDLINELOCATION 36,603
+typedef struct _CStringServer_CStringServer39,645
+	} CStringServer;CStringServer43,765
+#define MAX_INSTR_ARGS 56,942
+typedef union _UInstrArg_UInstrArg58,968
+	} UInstrArg;UInstrArg63,1160
+#define ARGTYPE_REAL 79,1343
+typedef struct _InstrDescriptor_InstrDescriptor81,1379
+	} InstrDescriptor;InstrDescriptor86,1470
+typedef struct _CInstr_CInstr204,3213
+	} CInstr;CInstr213,3497
+typedef int INSTRKEY;INSTRKEY215,3509
+typedef CInstrList* CInstrListRef;CInstrListRef234,4229
+typedef struct _CAttr_CAttr249,4951
+	} CAttr;CAttr260,5126
+typedef char* TEMPSTRING;TEMPSTRING264,5193
+#define YYSTYPE 270,5343
+typedef struct _CSemantics_CSemantics272,5366
+	} CSemantics;CSemantics287,5653
+typedef char* OutToken;OutToken289,5669
+#define CSEMANTICS__CATCH(CSEMANTICS__CATCH335,8075
+#define CSEMANTICS__THROWUP(CSEMANTICS__THROWUP336,8126
+#define CSEMANTICS__THROW(CSEMANTICS__THROW337,8212
+#define CSEMANTICS__EXCEPTION_EXIT 338,8274
+#define CSEMANTICS__CATCH_AND_THROW(CSEMANTICS__CATCH_AND_THROW339,8357
+#define NEWSTRING(NEWSTRING341,8448
+
+c:/data/source/jabba/parser.tab.h,712
+#define YYSTYPE 2,16
+#define	integerConstTKN	4,43
+#define	realConstTKN	5,71
+#define	identTKN	6,96
+#define	intTKN	7,117
+#define	realTKN	8,136
+#define	bigTKN	9,156
+#define	whileTKN	10,175
+#define	elseTKN	11,196
+#define	thenTKN	12,216
+#define	ifTKN	13,236
+#define	assignTKN	14,254
+#define	returnTKN	15,276
+#define	callTKN	16,298
+#define	printTKN	17,318
+#define	printlnTKN	18,339
+#define	lessequalTKN	19,362
+#define	greaterequalTKN	20,387
+#define	notequalTKN	21,415
+#define	equalTKN	22,439
+#define	corTKN	23,460
+#define	candTKN	24,479
+#define	globalTKN	25,499
+#define	localTKN	26,521
+#define	pointerTKN	27,542
+#define	stringTKN	28,565
+#define	uminusTKN	29,587
+#define	addressofTKN	30,609
+
+c:/data/source/jabba/regalloc.h,932
+#define _REG_ALLOCH11,216
+typedef struct _CVirtReg_CVirtReg16,276
+	} CVirtReg;CVirtReg23,487
+typedef int REGKEY;REGKEY34,802
+typedef REGKEY* PREGKEY;PREGKEY35,822
+typedef CVirtReg* PVIRTREG;PVIRTREG37,848
+#define REGTABLESIZE 44,989
+typedef struct _CPhysReg_CPhysReg48,1078
+	} CPhysReg;CPhysReg53,1159
+#define MAX_INTREG 64,1502
+#define MAX_FLOATREG 65,1524
+#define MAX_VIRTREG 66,1548
+typedef struct _CRegTable_CRegTable68,1575
+	} CRegTable;CRegTable80,1822
+#define REGMAX 97,2572
+#define REGADDR 99,2599
+#define REGZERO 100,2626
+#define REGTEMP 101,2653
+#define REGFLOAT 102,2680
+#define REGINVALID 103,2708
+#define REGGLOBAL 104,2738
+#define REGRETURNADDR 105,2767
+#define INTCALLREG 106,2800
+#define FLOATCALLREG 107,2830
+#define RETURNREG 108,2862
+#define FLOATRETURNREG 109,2891
+#define REGFRAME 110,2925
+#define REGSTACK 111,2953
+#define REGSAVE 112,2981
+#define STACKITEMSIZE 114,3009
+
+c:/data/source/jabba/std.h,1647
+#define _STD_H10,170
+#define fTrue 22,368
+#define fFalse 23,389
+#define MAXASSERTBUF 26,432
+#define MAXTEMPBUF 27,472
+#define MAXASSERTBUF 29,500
+#define MAXTEMPBUF 30,523
+#define AssertStd(AssertStd34,598
+#define AssertStdSz(AssertStdSz35,629
+#define AssertStd(AssertStd39,740
+#define AssertStd(AssertStd44,845
+#define AssertStdSz(AssertStdSz49,918
+#define AssertStdSz(AssertStdSz54,1025
+#define ENTER_CRITICAL_SECTION(ENTER_CRITICAL_SECTION59,1131
+#define INITIALIZE_CRITICAL_SECTION(INITIALIZE_CRITICAL_SECTION60,1189
+#define LEAVE_CRITICAL_SECTION(LEAVE_CRITICAL_SECTION61,1257
+#define ENTER_CRITICAL_SECTION(ENTER_CRITICAL_SECTION63,1345
+#define INITIALIZE_CRITICAL_SECTION(INITIALIZE_CRITICAL_SECTION64,1379
+#define LEAVE_CRITICAL_SECTION(LEAVE_CRITICAL_SECTION65,1418
+#define STDMALLOC(STDMALLOC75,1708
+#define STDFREE(STDFREE76,1748
+#define STDREALLOC(STDREALLOC77,1784
+#define NEWOBJECT(NEWOBJECT79,1833
+#define NEWOBJECT_WITH_ARGS(NEWOBJECT_WITH_ARGS80,1895
+#define DELETEOBJECT(DELETEOBJECT82,1982
+#define ERRORREF_NOERROR 84,2039
+#define RESET_LASTERROR 85,2066
+#define SET_LASTERROR(SET_LASTERROR86,2121
+#define CLASS_CONSTRUCTOR(CLASS_CONSTRUCTOR92,2252
+#define CLASS_GENERIC_CONSTRUCTOR(CLASS_GENERIC_CONSTRUCTOR93,2307
+#define CLASS_DESTRUCTOR(CLASS_DESTRUCTOR94,2387
+#define CALL_CONSTRUCTOR(CALL_CONSTRUCTOR95,2448
+#define CALL_GENERIC_CONSTRUCTOR(CALL_GENERIC_CONSTRUCTOR96,2490
+#define CALL_DESTRUCTOR(CALL_DESTRUCTOR97,2548
+typedef int BOOLFLAG;BOOLFLAG122,2924
+typedef int ERRORREF;ERRORREF123,2946
+typedef struct _CHeap_CHeap141,3415
+	} CHeap;CHeap144,3452
+
+c:/data/source/jabba/stdtype.h,381
+#define _STDTYPE_H20,506
+typedef struct _NOKEY_NOKEY47,1214
+	} NOKEY;NOKEY50,1251
+#define LIST_TEMPLATE_DECLARATION(LIST_TEMPLATE_DECLARATION52,1262
+#define LIST_TEMPLATE_DEFINITION(LIST_TEMPLATE_DEFINITION89,2280
+#define HASHTABLE_TEMPLATE_DECLARATION(HASHTABLE_TEMPLATE_DECLARATION301,6470
+#define HASHTABLE_TEMPLATE_DEFINITION(HASHTABLE_TEMPLATE_DEFINITION317,6950
+
+c:/data/source/jabba/symio.h,380
+#define _SYMIO_H10,158
+#define CFStream__read 16,209
+#define CFStream__write 17,236
+#define CFStream__append 18,264
+#define CFStream__readwrite_existing 19,293
+#define CFStream__readwrite_destroy 20,335
+#define CFStream__readappend_create 21,376
+#define chNewline 23,418
+#define chEndOfString 24,441
+typedef struct _CFStream_CFStream28,491
+	} CFStream;CFStream32,548
+
+c:/data/source/jabba/jabba.c,2254
+CLASS_CONSTRUCTOR(13,184
+CLASS_DESTRUCTOR(31,654
+int CSemantics__GenerateLabel(40,859
+void CSemantics__IncrementErrors(46,945
+void CSemantics__IncrementSemanticErrors(51,1025
+void CSemantics__IncrementLines(56,1121
+void CSemantics__Intro(61,1199
+void CSemantics__Exit(66,1325
+void CSemantics__BindInstr(72,1481
+int CSemantics__BindRegister(124,2358
+void CSemantics__ShowError(189,3549
+void CSemantics__CreateFrame(204,3746
+void CSemantics__DestroyFrame(225,4302
+char* CSemantics__CatSz(250,4862
+BOOLFLAG CSemantics__FPrintCall(257,5045
+void CSemantics__PrintEOL(324,6737
+void CSemantics__ReturnStmt(347,7299
+BOOLFLAG CSemantics__UnaryOp(362,7623
+void CSemantics__AddressOf(396,8340
+void CSemantics__Dereference(416,8808
+BOOLFLAG CSemantics__BinaryOp(442,9371
+int CSemantics__RegAlloc(572,12556
+void CSemantics__RegFree(591,12933
+void CSemantics__IntConst(602,13180
+void CSemantics__Assign(619,13575
+void CSemantics__AssignScalar(640,13980
+void CSemantics__VariableExpr(718,15996
+void CSemantics__AssignBig(738,16476
+BOOLFLAG CSemantics__IWhile(779,17514
+BOOLFLAG CSemantics__IIfThen(824,18609
+BOOLFLAG CSemantics__IIfThenElse(858,19424
+void CSemantics__FunctionCall(900,20440
+CLASS_CONSTRUCTOR(1050,26028
+CLASS_DESTRUCTOR(1066,26359
+void CInstr__Assign(1075,26486
+CInstr* CInstr__SetInstr(1084,26645
+void CInstr__Output(1115,27191
+UInstrArg CInstr__GetArg(1145,27759
+void CInstr__OutputArgs(1165,28145
+CInstr* CInstr__Set(1264,29864
+void SetArg(1278,30422
+BOOLFLAG INSTRKEY__FEquivalent(1302,30869
+INSTRKEY* CInstr__GetKey(1308,30976
+LIST_TEMPLATE_DEFINITION(1318,31145
+CLASS_CONSTRUCTOR(1327,31336
+CLASS_DESTRUCTOR(1333,31407
+void CInstrListRef__Assign(1342,31516
+CInstrList* CInstrList__NewList(1350,31698
+void CInstrList__FreeList(1361,31959
+CInstrList* CInstrList__CatLists(1375,32196
+CInstrList* CInstrList__CatAndFree(1403,32736
+void CInstrList__Output(1415,32985
+void CInstrList__AddInstr(1431,33251
+CAttr* CAttr__CombineCode(1436,33359
+CLASS_CONSTRUCTOR(1457,33785
+char* CStringServer__SzStoreSz(1463,33859
+CLASS_CONSTRUCTOR(1476,34163
+CLASS_DESTRUCTOR(1482,34231
+TEMPSTRING* TEMPSTRING__GetKey(1487,34282
+void TEMPSTRING__Assign(1492,34354
+BOOLFLAG TEMPSTRING__FEquivalent(1497,34443
+
+c:/data/source/jabba/jabbamain.c,75
+void done(15,204
+int yywrap(23,305
+void yyerror(28,336
+int main(40,583
+
+c:/data/source/jabba/lex.yy.c,3230
+#define FLEX_SCANNER7,163
+#define YY_FLEX_MAJOR_VERSION 8,184
+#define YY_FLEX_MINOR_VERSION 9,216
+#define __cplusplus17,371
+#define YY_USE_PROTOS28,515
+#define YY_USE_CONST31,589
+#define YY_USE_PROTOS37,652
+#define YY_USE_CONST38,674
+#define YY_USE_CONST48,838
+#define YY_USE_PROTOS49,859
+#define yyconst 53,909
+#define yyconst55,937
+#define YY_PROTO(YY_PROTO60,983
+#define YY_PROTO(YY_PROTO62,1019
+#define YY_NULL 66,1087
+#define YY_SC_TO_UI(YY_SC_TO_UI73,1334
+#define BEGIN 79,1565
+#define YY_START 85,1762
+#define YYSTATE 86,1800
+#define YY_STATE_EOF(YY_STATE_EOF89,1883
+#define YY_NEW_FILE 92,2003
+#define YY_END_OF_BUFFER_CHAR 94,2042
+#define YY_BUF_SIZE 97,2111
+typedef struct yy_buffer_state *YY_BUFFER_STATE;YY_BUFFER_STATE99,2138
+#define EOB_ACT_CONTINUE_SCAN 104,2235
+#define EOB_ACT_END_OF_FILE 105,2267
+#define EOB_ACT_LAST_MATCH 106,2297
+#define yyless(yyless124,2871
+#define unput(unput134,3096
+typedef unsigned int yy_size_t;yy_size_t140,3334
+struct yy_buffer_stateyy_buffer_state143,3368
+#define YY_BUFFER_NEW 185,4419
+#define YY_BUFFER_NORMAL 186,4443
+#define YY_BUFFER_EOF_PENDING 197,4941
+#define YY_CURRENT_BUFFER 206,5174
+#define YY_FLUSH_BUFFER 235,6168
+#define yy_new_buffer 245,6604
+#define yy_set_interactive(yy_set_interactive247,6644
+#define yy_set_bol(yy_set_bol254,6849
+#define YY_AT_BOL(YY_AT_BOL261,7022
+typedef unsigned char YY_CHAR;YY_CHAR263,7074
+typedef int yy_state_type;yy_state_type265,7151
+#define yytext_ptr 267,7199
+#define YY_DO_BEFORE_ACTION 277,7594
+#define YY_NUM_RULES 284,7748
+#define YY_END_OF_BUFFER 285,7772
+#define REJECT 452,16189
+#define yymore(yymore453,16233
+#define YY_MORE_ADJ 454,16279
+#define INITIAL 457,16336
+#define ERRORRESET 462,16438
+#define YY_NO_PUSH_STATE 509,17401
+#define YY_NO_POP_STATE 510,17428
+#define YY_NO_TOP_STATE 511,17454
+#define YY_READ_BUF_SIZE 531,17870
+#define ECHO 540,18089
+#define YY_INPUT(YY_INPUT547,18281
+#define yyterminate(yyterminate570,19051
+#define YY_START_STACK_INCR 575,19186
+#define YY_FATAL_ERROR(YY_FATAL_ERROR580,19276
+#define YY_DECL 587,19451
+#define YY_USER_ACTION594,19624
+#define YY_BREAK 599,19717
+#define YY_RULE_SETUP 602,19749
+static int yy_get_next_buffer(1029,28210
+static yy_state_type yy_get_previous_state(1159,31255
+static yy_state_type yy_try_NUL_trans(1194,32159
+static void yyunput(1224,32963
+static int yyinput(1267,33987
+void yyrestart(1337,35326
+void yy_switch_to_buffer(1352,35615
+void yy_load_buffer_state(1382,36345
+YY_BUFFER_STATE yy_create_buffer(1395,36623
+void yy_delete_buffer(1426,37338
+void yy_init_buffer(1452,37777
+void yy_flush_buffer(1479,38207
+YY_BUFFER_STATE yy_scan_buffer(1507,38781
+YY_BUFFER_STATE yy_scan_string(1545,39666
+YY_BUFFER_STATE yy_scan_bytes(1562,39933
+static void yy_push_state(1601,40727
+static void yy_pop_state(1634,41404
+static int yy_top_state(1645,41603
+#define YY_EXIT_FAILURE 1652,41715
+static void yy_fatal_error(1656,41770
+#define yyless(yyless1671,42023
+static void yy_flex_strncpy(1688,42345
+static void *yy_flex_alloc(1704,42596
+static void *yy_flex_realloc(1714,42766
+static void yy_flex_free(1732,43337
+int main(1742,43464
+void ErrorReset(1751,43533
+
+c:/data/source/jabba/parser.tab.c,1918
+#define YYBISON 6,90
+#define	integerConstTKN	8,140
+#define	realConstTKN	9,168
+#define	identTKN	10,193
+#define	intTKN	11,214
+#define	realTKN	12,233
+#define	bigTKN	13,253
+#define	whileTKN	14,272
+#define	elseTKN	15,293
+#define	thenTKN	16,313
+#define	ifTKN	17,333
+#define	assignTKN	18,351
+#define	returnTKN	19,373
+#define	callTKN	20,395
+#define	printTKN	21,415
+#define	printlnTKN	22,436
+#define	lessequalTKN	23,459
+#define	greaterequalTKN	24,484
+#define	notequalTKN	25,512
+#define	equalTKN	26,536
+#define	corTKN	27,557
+#define	candTKN	28,576
+#define	globalTKN	29,596
+#define	localTKN	30,618
+#define	pointerTKN	31,639
+#define	stringTKN	32,662
+#define	uminusTKN	33,684
+#define	addressofTKN	34,706
+#define YYDEBUG 38,752
+#define YYSTYPE 44,830
+#define YYDEBUG 47,873
+#define const54,956
+#define	YYFINAL	60,987
+#define	YYFLAG	61,1008
+#define	YYNTBASE	62,1031
+#define YYTRANSLATE(YYTRANSLATE64,1052
+#define	YYLAST	225,9934
+#define alloca 292,13463
+#define yyerrok	328,14588
+#define yyclearin	329,14623
+#define YYEMPTY	330,14660
+#define YYEOF	331,14680
+#define YYACCEPT	332,14697
+#define YYABORT 333,14724
+#define YYERROR	334,14751
+#define YYFAIL	339,14987
+#define YYRECOVERING(YYRECOVERING340,15017
+#define YYBACKUP(YYBACKUP341,15057
+#define YYTERROR	353,15391
+#define YYERRCODE	354,15410
+#define YYLEX	357,15448
+#define YYLEX	363,15532
+#define YYLEX	365,15590
+#define YYLEX	369,15684
+#define YYLEX	371,15733
+#define YYINITDEPTH 401,16451
+#define YYMAXDEPTH 412,16680
+#define __yy_memcpy(__yy_memcpy421,16861
+__yy_memcpy 428,17112
+__yy_memcpy 446,17465
+#define YYPARSE_PARAM_DECL 468,17998
+#define YYPARSE_PARAM470,18052
+#define YYPARSE_PARAM_DECL471,18074
+yyparse(475,18113
+#define YYPOPSTACK 496,18820
+#define YYPOPSTACK 498,18875
+  if 1146,33148
+  if 1160,33401
+  if 1183,34019
+  if 1244,35421
+  if 1273,36232
+  if 1299,36715
+  else if 1314,36991
+
+c:/data/source/jabba/regalloc.c,1116
+CLASS_CONSTRUCTOR(7,70
+CLASS_DESTRUCTOR(17,258
+BOOLFLAG REGKEY__FEquivalent(22,307
+REGKEY* CVirtReg__GetKey(27,401
+void CVirtReg__Assign(32,481
+int CVirtReg__GetID(37,564
+int CVirtReg__GetPhysID(42,636
+void CVirtReg__SetPhysReg(47,712
+int CVirtReg__GetStackOffset(52,810
+void CVirtReg__StoreReg(57,890
+CLASS_CONSTRUCTOR(64,985
+CLASS_DESTRUCTOR(70,1051
+REGKEY* PVIRTREG__GetKey(75,1100
+void PVIRTREG__Assign(80,1183
+int CVirtRegStore__HashFunc(85,1266
+CLASS_CONSTRUCTOR(95,1485
+CLASS_DESTRUCTOR(124,2103
+int CRegTable__RegAlloc(141,2403
+void CRegTable__RegFree(171,3128
+int CRegTable__CGetGenRegCount(195,3637
+int CRegTable__CGetFloatRegCount(200,3719
+CPhysReg* CRegTable__GetPhysReg(205,3802
+CVirtReg* CRegTable__GetVirtReg(217,3998
+int CRegTable__RealRegFromPhysID(223,4125
+int CRegTable__RealRegFromVirtID(245,4495
+int CRegTable__RegRequest(254,4733
+void CRegTable__Reset(274,5161
+CLASS_CONSTRUCTOR(280,5279
+CLASS_DESTRUCTOR(288,5424
+int CPhysReg__GetID(294,5521
+CVirtReg* CPhysReg__GetCurrentOwner(299,5589
+BOOLFLAG CPhysReg__FSetOwner(304,5700
+void CPhysReg__RemoveUser(318,6003
+
+c:/data/source/jabba/std.c,198
+void AssertFSz(20,335
+CLASS_CONSTRUCTOR(63,1304
+CLASS_DESTRUCTOR(72,1431
+void* CHeap__malloc(81,1631
+void CHeap__free(115,2198
+void* CHeap__realloc(135,2539
+ERRORREF StdGetLastError(141,2638
+
+c:/data/source/jabba/stdtype.c,36
+BOOLFLAG NOKEY__FEquivalent(10,161
+
+c:/data/source/jabba/symio.c,412
+CLASS_CONSTRUCTOR(11,157
+CLASS_DESTRUCTOR(17,229
+BOOLFLAG CFStream__FOpen(22,278
+BOOLFLAG CFStream__FClose(27,408
+int CFStream__WGet(32,493
+BOOLFLAG CFStream__FEof(37,565
+BOOLFLAG CFStream__FError(42,641
+BOOLFLAG CFStream__FReadline(47,721
+void CFStream__SetFromStdlibFile(73,1061
+FILE* CFStream__FPGetStdlibFile(78,1154
+char* StretchSz(91,1431
+char* StretchInt(108,1826
+char* StretchFloat(126,2241
+
+e:\apps\emacs\emacs-19.34\bin\tags.txt,include
