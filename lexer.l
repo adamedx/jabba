@@ -74,15 +74,15 @@ ENDLINE	(\n|\012|\015|(\015\012)|(\012\015))
 <ERRORRESET>";"	{BEGIN INITIAL;}
 <ERRORRESET>{ENDLINE}	{
 	if(yytext[0] == '\n'|| yytext[1] == '\n')
-		{
+	{
 		CSemantics__IncrementLines(g_psem);
-		}
 	}
+}
 <ERRORRESET>.	;
 
 %%
 
 void ErrorReset()
-	{
+{
 	BEGIN ERRORRESET;
-	}
+}

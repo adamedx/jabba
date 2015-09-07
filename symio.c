@@ -1,5 +1,5 @@
 /*///////////////////////////////////
-// symio.c							
+// symio.c
 // Adam Edwards
 // adame@engin.umich.edu
 // Student
@@ -9,76 +9,76 @@
 #include "symio.h"
 
 CLASS_CONSTRUCTOR(CFStream)
-	{
-	pthis->pfile = NULL;
-	return pthis;
-	}
+{
+    pthis->pfile = NULL;
+    return pthis;
+}
 
 CLASS_DESTRUCTOR(CFStream)
-	{
-	return pthis;
-	}
+{
+    return pthis;
+}
 
 BOOLFLAG CFStream__FOpen(CFStream* pthis, char* szFile, char* pmode)
-	{
-	return (pthis->pfile = fopen(szFile,pmode)) != NULL;
-	}
+{
+    return (pthis->pfile = fopen(szFile,pmode)) != NULL;
+}
 
 BOOLFLAG CFStream__FClose(CFStream* pthis)
-	{
-	return fclose(pthis->pfile) == 0;
-	}
+{
+    return fclose(pthis->pfile) == 0;
+}
 
 int CFStream__WGet(CFStream* pthis)
-	{
-	return fgetc(pthis->pfile);
-	}
+{
+    return fgetc(pthis->pfile);
+}
 
 BOOLFLAG CFStream__FEof(CFStream* pthis)
-	{
-	return feof(pthis->pfile);
-	}
+{
+    return feof(pthis->pfile);
+}
 
 BOOLFLAG CFStream__FError(CFStream* pthis)
-	{
-	return ferror(pthis->pfile);
-	}
+{
+    return ferror(pthis->pfile);
+}
 
 BOOLFLAG CFStream__FReadline(CFStream* pthis, char* pvBuf,int cbMax)
-	{
-	int ipos = 0;
-	char chIn;
+{
+    int ipos = 0;
+    char chIn;
 
-	cbMax--;		
-	while(ipos < cbMax)
-		{
-		if ((chIn = CFStream__WGet(pthis)) == chNewline)
-			{
-			break;
-			}
+    cbMax--;
+    while(ipos < cbMax)
+    {
+        if ((chIn = CFStream__WGet(pthis)) == chNewline)
+        {
+            break;
+        }
 
-		if (CFStream__FEof(pthis))
-			{
-			break;
-			}
+        if (CFStream__FEof(pthis))
+        {
+            break;
+        }
 
-		pvBuf[ipos++] = chIn;
-		}
+        pvBuf[ipos++] = chIn;
+    }
 
-	pvBuf[ipos++] = chEndOfString;
+    pvBuf[ipos++] = chEndOfString;
 
-	return fTrue;
-	}
+    return fTrue;
+}
 
 void CFStream__SetFromStdlibFile(CFStream* pthis, FILE* pfile)
-	{
-	pthis->pfile = pfile;
-	}
+{
+    pthis->pfile = pfile;
+}
 
 FILE* CFStream__FPGetStdlibFile(CFStream* pthis)
-	{
-	return pthis->pfile;
-	}
+{
+    return pthis->pfile;
+}
 
 
 /* useful helper functions */
@@ -89,34 +89,34 @@ FILE* CFStream__FPGetStdlibFile(CFStream* pthis)
 // it places the padded or truncated Sz into szDest
 */
 char* StretchSz(char* szSource, char* szDest, int nWidth)
-	{
-	int i;
-	strncpy(szDest,szSource,nWidth);
-	for(i = strlen(szSource);i<nWidth;i++)
-		{
-		szDest[i] = ' ';
-		}
-	szDest[nWidth] = '\0';
-	
-	return szDest;
-	}
+{
+    int i;
+    strncpy(szDest,szSource,nWidth);
+    for(i = strlen(szSource);i<nWidth;i++)
+    {
+        szDest[i] = ' ';
+    }
+    szDest[nWidth] = '\0';
+
+    return szDest;
+}
 
 /*////////////////////////////////////////////////////////////
 // Forces an integer to fit into a string of specified width
 // it places the padded or truncated Sz into szDest
 */
 char* StretchInt(int wSource, char* szDest, int nWidth)
-	{
-	int i;
-	sprintf(szDest,"%d",wSource);
-	for(i = strlen(szDest);i<nWidth;i++)
-		{
-		szDest[i] = ' ';
-		}
-	szDest[nWidth] = '\0';
-	
-	return szDest;
-	}
+{
+    int i;
+    sprintf(szDest,"%d",wSource);
+    for(i = strlen(szDest);i<nWidth;i++)
+    {
+        szDest[i] = ' ';
+    }
+    szDest[nWidth] = '\0';
+
+    return szDest;
+}
 
 /*/////////////////////////////////////////////////////////////////////////
 // Forces an floating point nmber to fit into a string of specified width
@@ -124,16 +124,14 @@ char* StretchInt(int wSource, char* szDest, int nWidth)
 */
 
 char* StretchFloat(double fpSource, char* szDest, int nWidth)
-	{
-	int i;
-	sprintf(szDest,"%lf",fpSource);
-	for(i = strlen(szDest);i<nWidth;i++)
-		{
-		szDest[i] = ' ';
-		}
-	szDest[nWidth] = '\0';
-	
-	return szDest;
-	}
+{
+    int i;
+    sprintf(szDest,"%lf",fpSource);
+    for(i = strlen(szDest);i<nWidth;i++)
+    {
+        szDest[i] = ' ';
+    }
+    szDest[nWidth] = '\0';
 
-	
+    return szDest;
+}

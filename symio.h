@@ -1,5 +1,5 @@
 /*///////////////////////////////////////
-// symio.h	
+// symio.h
 // Adam Edwards
 // adame@engin.umich.edu
 // Student
@@ -26,10 +26,10 @@
 
 /* class CFStream */
 typedef struct _CFStream
-	{
-	/* private */
-	FILE* pfile;
-	} CFStream;
+{
+    /* private */
+    FILE* pfile;
+} CFStream;
 
 /* public */
 /* non-static methods */
@@ -48,16 +48,16 @@ FILE* CFStream__FPGetStdlibFile(CFStream* pthis);
 void CFStream__SetFromStdlibFile(CFStream* pthis, FILE* pfile);
 
 size_t CFStream__CbWrite(
-	CFStream* pthis,
-	void* pvBuf,
-	size_t cbitemsize,
-	size_t cb);
+    CFStream* pthis,
+    void* pvBuf,
+    size_t cbitemsize,
+    size_t cb);
 
 size_t CFStream__CbRead(
-	CFStream* pthis,
-	void* pvBuf,
-	size_t cbitemsize,
-	size_t cb);
+    CFStream* pthis,
+    void* pvBuf,
+    size_t cbitemsize,
+    size_t cb);
 
 /* end class CFStream */
 
@@ -68,4 +68,3 @@ char* StretchInt(int wSource, char* szDest, int nWidth);
 char* StretchFloat(double fpSource, char* szDest, int nWidth);
 
 #endif /* !defined(_SYMIO_H) */
-

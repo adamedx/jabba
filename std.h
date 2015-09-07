@@ -35,23 +35,23 @@
 #define AssertStdSz(x,y) assert(x)
 #else /* defined(_UNIX) || defined(_STRICT_ANSI_C) */
 
-#if defined(_DEBUG) 
+#if defined(_DEBUG)
 #define AssertStd(x)	\
-	{				\
-	AssertFSz((x),__LINE__,__FILE__,NULL);	\
-	}	
+{				\
+    AssertFSz((x),__LINE__,__FILE__,NULL);	\
+}
 #else /* defined(_DEBUG) */
-#define AssertStd(x)	
+#define AssertStd(x)
 #endif	/* defined(_DEBUG)*/
 
 
-#if defined(_DEBUG)	
+#if defined(_DEBUG)
 #define AssertStdSz(x,y)	\
-	{				\
-	AssertFSz((x),__LINE__,__FILE__,(y));	\
-	}
+{                                       \
+    AssertFSz((x),__LINE__,__FILE__,(y));	\
+}
 #else	/* defined(_DEBUG) */
-#define AssertStdSz(x,y)	
+#define AssertStdSz(x,y)
 #endif	/* defined(_DEBUG) */
 #endif /* defined(_UNIX) */
 
@@ -78,7 +78,7 @@
 
 #define NEWOBJECT(x) CALL_CONSTRUCTOR(x,STDMALLOC(sizeof(x)))
 #define NEWOBJECT_WITH_ARGS(x,z)	\
-	CALL_GENERIC_CONSTRUCTOR(STDMALLOC(x*sizeof(x)*z))
+    CALL_GENERIC_CONSTRUCTOR(STDMALLOC(x*sizeof(x)*z))
 #define DELETEOBJECT(x,y) STDFREE(CALL_DESTRUCTOR(x,y))
 
 #define ERRORREF_NOERROR 0
@@ -95,28 +95,6 @@
 #define CALL_CONSTRUCTOR(x,y)	x##__##x(y)
 #define CALL_GENERIC_CONSTRUCTOR(x,y,z)	x##__##x##pv(y,z)
 #define CALL_DESTRUCTOR(x,y) x##__Destructor(y)
-
-
-/*
-#define BEGIN_CLASS(x)	\
-typedef class _##x * _p##x ;	\
-typedef class _##x	\
-	{
-
-#define END_CLASS(x)	\
-	}	x ;
-
-#define INCLUDE_METHODS (x)	\
-	void* _vtable[] = {x}
-
-#define CLASS_METHOD (x,y,z)	\
-	x ##y__##z (_p##y pthis
-#define END_METHOD	)
-
-#define DECLARE_STATIC_METHOD (x,y,z)	\
-	x ##y__##z (p);
-		
-*/
 
 /* typedefs */
 typedef int BOOLFLAG;
@@ -135,13 +113,13 @@ void AssertFSz(BOOLFLAG fAssertion, int iline, char* szFile, char* szMsg);
 // requests for dynamic memory should go through
 // this.  In debug, it keeps track of allocated
 // blocks.  When you exit, it asserts if you
-// haven't freed everything or you've freed too 
+// haven't freed everything or you've freed too
 // much.
 */
 typedef struct _CHeap
-	{
-	int dummy;
-	} CHeap;
+    {
+    int dummy;
+    } CHeap;
 
 /* public */
 /* non-static methods */
@@ -165,4 +143,3 @@ extern int HEAPCHECK;
 /* prototypes */
 ERRORREF StdGetLastError();
 #endif /* !defined(_STD_H) */
-
